@@ -25,8 +25,8 @@ public class Bdao {
 	public Bdao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			dbconn = DriverManager.getConnection("jdbc:mysql://localhost:3306/opentutorials?serverTimezone=UTC", "root",
-					"1234");
+			dbconn = DriverManager.getConnection("jdbc:mysql://localhost:3306/opentutorials?serverTimezone=UTC", uid,
+					pwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
