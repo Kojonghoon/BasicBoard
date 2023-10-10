@@ -47,3 +47,8 @@ a:hover {
 .m2 {
 	background-color: #ddcc00;
 }
+
+.m3 {
+	background-color: #ffcc00;
+	border-bottom: 1px dotted #9933aa;
+}
