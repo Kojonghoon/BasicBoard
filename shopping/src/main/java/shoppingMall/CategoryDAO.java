@@ -72,7 +72,7 @@ public class CategoryDAO {
 			if (dbconn != null) dbconn.close();
 		}
 	}// categoryAll()
-
+	
 	public int categoryDelete(String cnum) throws SQLException {
 		Connection dbconn = null;
 		PreparedStatement pstmt = null;

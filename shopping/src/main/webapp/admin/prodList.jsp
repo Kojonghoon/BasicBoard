@@ -41,7 +41,7 @@
 		<td><%=pdto.getPrice()%></td>
 		<td><%=pdto.getPcompany()%></td>
 		<td><%=pdto.getPqty()%></td>
-		<td><a href="prodUpdate.jsp">수정</a>|<a href="prodDelete.jsp">삭제</a></td>
+		<td><a href="prodUpdate.jsp?pnum=<%=pdto.getPnum()%>">수정</a>|<a href="prodDelete.jsp?pnum<%=pdto.getPnum()%>">삭제</a></td>
 	</tr>
 	<%
 	} //for
