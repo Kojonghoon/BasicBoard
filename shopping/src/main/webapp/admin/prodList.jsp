@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" import="shoppingMall.*, java.util.*"%>
 <%@include file="../ad_top.jsp"%>
+
+<script type="text/javascript">
+	function checkDel(pnum, pimage) {
+		var isDel= window.confirm("삭제 하시겠습니까?");
+		if(isDel){
+			location.href="prodDelete.jsp?pnum="+pnum+"&pimage="+pimage;
+		}
+	}//checkDel()
+</script>
+
 <br/>
 <br/>
 <hr width=500 color ="red"/>
@@ -41,7 +51,7 @@
 		<td><%=pdto.getPrice()%></td>
 		<td><%=pdto.getPcompany()%></td>
 		<td><%=pdto.getPqty()%></td>
-		<td><a href="prodUpdate.jsp?pnum=<%=pdto.getPnum()%>">수정</a>|<a href="prodDelete.jsp?pnum<%=pdto.getPnum()%>">삭제</a></td>
+		<td><a href="prodUpdate.jsp?pnum=<%=pdto.getPnum()%>">수정</a>|<a href="javascript:checkDel('<%=pdto.getPnum()%>','<%=pdto.getPimage()%>');">삭제</a></td>
 	</tr>
 	<%
 	} //for

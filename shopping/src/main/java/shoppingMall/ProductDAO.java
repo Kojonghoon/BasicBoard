@@ -177,6 +177,23 @@ public class ProductDAO {
 		}
 
 	}// updateProd()
+	
+	//상품번호로 해당 상품정보를 삭제하는 로직
+	public int delProd(String pnum) throws SQLException{
+		Connection dbconn = null;
+		PreparedStatement ps = null;
+		String sql ="delete from product where pnum = ?";
+		
+		try {
+			dbconn = getConnection();
+			ps = dbconn.prepareStatement(sql);
+			ps.setString(1, pnum);
+			return ps.executeUpdate();
+		} finally {
+			if(ps != null) ps.close();
+			if(dbconn != null) dbconn.close();			
+		}
+	}//delProd()
 
 	// connection pool에서 connection확보
 	private Connection getConnection() {
