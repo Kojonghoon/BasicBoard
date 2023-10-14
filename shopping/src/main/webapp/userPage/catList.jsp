@@ -1,4 +1,3 @@
-<%@page import="java.net.URLDecoder"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Vector"%>
 <%@page import="shoppingMall.user.ProdListDAO"%>

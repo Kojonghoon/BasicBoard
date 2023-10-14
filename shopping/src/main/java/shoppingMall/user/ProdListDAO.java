@@ -128,6 +128,17 @@ public class ProdListDAO {
 		} // while End
 		return v;
 	}// makeVector()
+	
+	public ProductDTO getProduct(String pnum, String psepc) {
+		Vector<ProductDTO> v = hashTable.get(psepc);
+		
+		for(ProductDTO pd : v) {
+			if(pnum.equals(pd.getPnum())) {
+				return pd;
+			}//id End
+		}//for End
+		return null;
+	}//getProduct()
 
 	// connection pool에서 connection확보
 	private Connection getConnection() {
