@@ -3,7 +3,6 @@
 </tr>
 <tr>
 	<td colspan="2" align="center">Copyrights xxxxx</td>
-	<td></td>
 </tr>
 </table>
 </body>

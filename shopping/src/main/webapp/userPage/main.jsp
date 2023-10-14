@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" import="shoppingMall.*"%>
 <%@include file="main_top.jsp"%>
 <!-- mall 내용 -->
-<td>
 	<h3 align="center">쇼핑몰에 오신 것을 환영합니아!!!</h3>
 	<%	//인기상품 진열 ----------------------------
 	DecimalFormat df = new DecimalFormat("#,###,###");
@@ -34,8 +33,10 @@
 				int point = pdto.getPoint();
 			%>
 			<td align="center">
-				<a href=""> <img src="../uploadFile/<%=pimage%>" width="120" height="120" border="0" />
-				</a> <br />
+				<a href="prodView.jsp?pnum=<%=pnum%>&pspec=hit">  
+				<img src="../uploadFile/<%=pimage%>" width="120" height="120" border="0" />
+				</a> 
+				<br />
 				<%=pname%><br />
 				<%=df.format(price)%>원<br /> [<%=df.format(point)%>]포인트
 			</td>
@@ -60,7 +61,7 @@
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;최신 상품</b>
 		<hr color="green" width="90%">
 		<br>
-		<table width="100%" border=0 aligh="center">
+		<table width="100%" border=1 aligh="center">
 			<tr>
 				<%
 					int cnt = 0;
@@ -73,7 +74,8 @@
 						int point = pdto.getPoint();
 				%>
 				<td align="center">
-					<a href=""> <img src="../uploadFile/<%=pimage%>" width="120" height="120" border="0" />
+					<a href="prodView.jsp?pnum=<%=pnum%>&pspec=new"> 
+					<img src="../uploadFile/<%=pimage%>" width="120" height="120" border="0" />
 					</a> <br />
 					<%=pname%><br />
 					<%=df.format(price)%>원<br /> [<%=df.format(point)%>]포인트

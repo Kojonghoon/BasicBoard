@@ -16,17 +16,18 @@ public class ProdListDAO {
 	
 	Hashtable<String, Vector<ProductDTO>> hashTable= new Hashtable<String, Vector<ProductDTO>>();
 	
-	private Vector<ProductDTO> pdtos;
+	private Vector<ProductDTO> pdtos, pdtos2;
 	
 	private ProdListDAO() {
 		pdtos = new Vector<ProductDTO>(3,2);
+		pdtos2 = new Vector<ProductDTO>(3,2);
 	}
 
 	public static ProdListDAO getInstance() {
 		return insProdDAO;
 	}
 
-	// 상품 사양별로 상품목록을 가져오는 비즈니스 로직
+	//###### 상품 사양별로 상품목록을 가져오는 비즈니스 로직 ######
 	public Vector<ProductDTO> selectByPspec(String pspec) throws SQLException {
 		Connection dbconn = null;
 		PreparedStatement ps = null;
@@ -45,9 +46,63 @@ public class ProdListDAO {
 			
 			return pdtos;
 		} finally {
-
+			if(rs!=null) rs.close();
+			if(ps!=null) ps.close();
+			if(dbconn!=null) dbconn.close();
 		}
 	}// selectByPspec()
+	
+	
+	//###### 카테고리별로 상품 리스트 가져오기 #######
+	public Vector<ProductDTO> selectByCat(String category_fk) throws SQLException{
+		Connection dbconn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from product where pcategory_fk=?";
+		try {
+			dbconn = getConnection();
+			ps = dbconn.prepareStatement(sql);
+			ps.setString(1, category_fk);
+			rs = ps.executeQuery();
+			
+			pdtos2 = this.makeVector(rs);
+			
+			hashTable.put(category_fk,pdtos2);
+			
+			return pdtos2;
+			
+		} finally {
+			if(rs!=null) rs.close();
+			if(ps!=null) ps.close();
+			if(dbconn!=null) dbconn.close();
+		}
+	}//selectByCat()
+	
+	//###### 상품 번호로 상품정보 가져오는 비즈니스 로직 #######
+	public Vector<ProductDTO> selectByPnum(String pnum) throws Exception{
+		Connection dbconn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from product where pnum=?";
+		try {
+			dbconn = getConnection();
+			ps = dbconn.prepareStatement(sql);
+			ps.setString(1, pnum);
+			rs = ps.executeQuery();
+			
+			Vector<ProductDTO> v = this.makeVector(rs);
+			return v;
+			
+		} finally {
+			if(rs!=null) rs.close();
+			if(ps!=null) ps.close();
+			if(dbconn!=null) dbconn.close();
+		}
+	}//selectByPnum
+	
+	
 
 	public Vector<ProductDTO> makeVector(ResultSet rs) throws SQLException {
 		Vector<ProductDTO> v = new Vector<ProductDTO>();
